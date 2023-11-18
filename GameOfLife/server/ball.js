@@ -1,58 +1,24 @@
-class Ball {
-    constructor(x, y) {
-        this.x = x
-        this.y = y
+let LivingCreature = require("./LivingCreature")
+
+module.exports = class Ball extends LivingCreature{
+    constructor(x, y, ) {
+        super(x,y,)
         this.energy = 25
-        this.directions = []
-    }
-
-
-    getNewCordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-
-    }
-
-    chooseCell(character, character1) {
-        this.getNewCordinates()
-        var found = [];
-        for (let i = 0; i < this.directions.length; i++) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character || matrix[y][x] == character1) {
-                    found.push(this.directions[i]);
-                }
-            }
-
-        }
-        return found;
-
     }
 
 
     mul() {
 
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
 
-            matrix[newY][newX] = 5
-
-
-            let Bal = new Ball(newX, newY)
+            let Bal = new Ball(newX, newY, 5)
             ballArr.push(Bal)
+            this.ener
 
 
 
@@ -116,19 +82,18 @@ class Ball {
 
     move() {
         this.energy--;
-        let emptyCell = this.chooseCell(0);
-        let newCell = random(emptyCell);
+		var emptyCells = super.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
 
-            matrix[this.y][this.x] = 0;
-
+            matrix[newY][newX] = matrix[this.y][this.x]
             matrix[newY][newX] = 5;
 
-            this.x = newX;
-            this.y = newY;
+            this.x = newX
+            this.y = newY
         }
 
         if (this.energy <= 0) {
@@ -138,14 +103,9 @@ class Ball {
     }
 
     die() {
-        matrix[this.y][this.x] = 0;
+		matrix[this.y][this.x] = 0;
+	}
 
-        for (let i in ballArr) {
-            if (this.x == ballArr[i].x && this.y == ballArr[i].y) {
-                ballArr.splice(i, 1);
-                break;
-            }
-        }
-    }
+
 
 }

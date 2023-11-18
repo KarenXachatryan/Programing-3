@@ -17,9 +17,22 @@ function grel(matrix){
                         fill("green");
                         rect(x * side, y * side, side, side)
                     }
-                    else if (obj == 2) {
+                     if (obj == 2) {
                         fill("yellow");
                         rect(x * side, y * side, side, side);
+                    }
+                    if(obj == 3){
+                        fill("red");
+                        rect(x * side, y * side, side, side)
+                    }
+                    if(obj == 4){
+                        fill("blue")
+                        rect(x * side, y * side, side, side)
+                    }
+                    else if(obl == 5){
+                        fill("orange")
+                        rect(x * side, y * side, side, side)
+
                     }
                 }
             }
