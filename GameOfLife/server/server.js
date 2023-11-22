@@ -77,14 +77,14 @@ matrix = matrixGenerator(20, 30, 8, 14, 5, 12);
 
 io.sockets.emit('send matrix', matrix)
 
-grassArr = [];
+grassArray = [];
 grassEaterArr = []
 predatorArr = []
 ballArr = []
 eaterArr = []
 
-Grass = require("./Grass")
-GrassEater = require("./GrassEater")
+Grass = require("./grass")
+GrassEater = require("./grassEater")
 Predator = require("./predator")
 Ball = require("./ball")
 Eater = require("./eater")
@@ -94,24 +94,24 @@ function createObject(matrix) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
                 var gr = new Grass(x, y);
-                grassArr.push(gr)
+                grassArray.push(gr)
             }
-            if (matrix[y][x] == 2) {
+            else if (matrix[y][x] == 2) {
                 var grEater = new GrassEater(x, y);
                 grassEaterArr.push(grEater)
 
 
             }
-            if (matrix[y][x] == 3) {
+            else if (matrix[y][x] == 3) {
                 var pred = new Predator(x, y)
                 predatorArr.push(pred)
             }
-            if (matrix[y][x] == 4) {
+            else if (matrix[y][x] == 4) {
                 let grEat = new Eater(x, y)
                 eaterArr.push(grEat)
             }
             else if (matrix[y][x] == 5) {
-                let Bal = new Ball(x,y)
+                let Bal = new Ball(x, y)
                 ballArr.push(Bal)
             }
         }
@@ -121,8 +121,8 @@ function createObject(matrix) {
 
 }
 function game() {
-    for (var i in grassArr) {
-        grassArr[i].mul()
+    for (var i in grassArray) {
+        grassArray[i].mul()
     }
     for (var i in grassEaterArr) {
         grassEaterArr[i].eat();
@@ -131,7 +131,7 @@ function game() {
         predatorArr[i].eat()
     }
     for (var i in ballArr) {
-        ballarr[i].eat()
+        ballArr[i].eat()
     }
     for (var i in eaterArr) {
         eaterArr[i].eat()

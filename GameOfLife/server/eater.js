@@ -75,7 +75,7 @@ module.exports = class Eater extends LivingCreature {
 
     move() {
         this.energy--;
-        let emptyCell = this.chooseCell(0);
+        let emptyCells = this.chooseCell(0);
 		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {

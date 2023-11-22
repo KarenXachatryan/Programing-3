@@ -27,7 +27,7 @@ module.exports = class Ball extends LivingCreature{
 
     eat() {
         let foods = this.chooseCell(1,2,3,4)
-        let food = random(foods)
+		var food = foods[Math.floor(Math.random() * foods.length)]
 
         if (food) {
             this.energy++
